@@ -6,7 +6,6 @@ for _ in range(height):
     temp = list(input())
     arr.append(temp)
 
-#print(arr)
 
 for i in range(height):
     col = 0
@@ -19,7 +18,8 @@ for i in range(height):
         while col+1<width and arr[i][col] =='-':
             col+=1
             isWidth = True
-
+            
+        # 끝자리를 봤는데, 이전에 -와 다른 문자일 경우에는 독립된 타일
         if col == width-1:
             if isWidth == False and arr[i][col] =='-':
                 colCnt+=1
@@ -45,6 +45,7 @@ for i in range(width):
             row+=1
             isHeight = True
             
+        # 끝자리를 봤는데, 이전에 |와 다른 문자일 경우에는 독립된 타일            
         if row == height-1:
             if isHeight == False and arr[row][i] =='|':
                 rowCnt+=1
