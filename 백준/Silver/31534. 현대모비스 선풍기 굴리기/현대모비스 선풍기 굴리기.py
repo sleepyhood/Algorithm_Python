@@ -20,6 +20,10 @@ from collections import deque
 
 a, b, h = map(int, input().split())
 
+if a==b:
+    print(-1)
+    exit()
+
 if a > b:
     a, b = b, a
 
