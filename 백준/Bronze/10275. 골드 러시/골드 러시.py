@@ -38,22 +38,13 @@ for _ in range(t):
     # 가방에 담으려면 가장 최소값에 기준에 맞추기
     _min = min(a,b)
     
-    golds = 2**n
-
-    
+    # 2진법으로 바꿨을 때, 2의 배수가 몇번까지 사용(1)되는지 확인
     bina = dec2Bin(_min, n)
     
     idx = n-1
 
+    # 최초로 끝에서 1이 나오는 지점 찾기
+    # 뒤에 1이 있을 수록 금을 더 잘게 쪼개야한다.
     while bina[idx]==0:
         idx-=1
     print(idx+1)
-    # while golds>_min:
-    #     golds//=2
-    #     days+=1
-
-    # print("golds: ", golds)
-    # if _min-golds>0:
-    #     golds//2
-    #     days+=1
-    # print(days)
