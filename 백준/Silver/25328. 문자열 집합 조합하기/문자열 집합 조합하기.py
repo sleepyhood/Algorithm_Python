@@ -27,10 +27,12 @@ from collections import deque
 def sol(st, tmp, k, idx):
     global res
     if k == 0:  # 반복횟수 최대인 경우
-        res.append(tmp)
+        res.append(tmp) # 만들 수 있음
         return
     for i in range(idx, len(st)):
-        sol(st, tmp+st[i], k-1, idx+1)
+        sol(st, tmp+st[i], k-1, idx+1) 
+        # 반복횟수 감소
+        # 현재 사용한 문자의 다음칸 문자부터 사용하게끔 idx 증가
         idx+=1
 
 # 입력    
@@ -49,10 +51,11 @@ sol(s1, tmp, k, 0)
 sol(s2, tmp, k, 0)
 sol(s3, tmp, k, 0)
 
-# 2개 이상 출현한 문자만 사용
 _dict = {}
 ans = set()
 
+# 2개 이상 출현한 문자인지 딕셔너리로 확인
+# 만약 중복이 된다면 set 형태로 중복없이 저장
 for e in res:
     if e in _dict:
         _dict[e]+=1
@@ -66,6 +69,7 @@ if len(ans) == 0:
     print(-1)
 
 else:
+    # 결과값은 오름차순
     ans = sorted(list(ans))
     for e in ans:
         print(e)
