@@ -41,6 +41,7 @@ def quarter(paper, leftX, leftY, size):
         return paper[leftY][leftX]
     
     else:    # 재귀가 필요
+        # 각 구간을 1/2씩 잘라서, 사이즈와 같이 반환
         q1 = quarter(paper, leftX, leftY, size//2)
         q2 = quarter(paper, leftX+size//2, leftY, size//2)
         q3 = quarter(paper, leftX, leftY+size//2, size//2)
@@ -49,18 +50,14 @@ def quarter(paper, leftX, leftY, size):
         # 모두 같은 값인지 체크
         if q1 == q2 == q3 == q4:
             return q1  # 모두 같은 경우, 해당 값(0 또는 1)을 반환
-        else:
-            # 값이 섞여 있으면 해당 구역을 카운팅
-            if q1 == 1: blueCnt += 1
-            if q2 == 1: blueCnt += 1
-            if q3 == 1: blueCnt += 1
-            if q4 == 1: blueCnt += 1
-            if q1 == 0: whiteCnt += 1
-            if q2 == 0: whiteCnt += 1
-            if q3 == 0: whiteCnt += 1
-            if q4 == 0: whiteCnt += 1
-            return -1  # 혼합된 경우, -1 반환 (이 값은 상위에서 처리 안 함)
-        
+
+        # 값이 섞여 있으면 각 구역을 카운팅
+        # 삽질 주의: 합을 구해버리면, 어느 구역이 1, 0인지 확인이 불가
+        for q in [q1, q2, q3, q4]:
+            if q == 1:
+                blueCnt += 1
+            elif q == 0:
+                whiteCnt += 1
 
 N = int(input())
 
