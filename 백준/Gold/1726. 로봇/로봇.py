@@ -74,21 +74,41 @@ while q:
     # 회전을 할 때, 2(남): 0(동), 1(서) / 3(북): 0(동), 1(서)
 
     # 제자리에서 90도 회전도 명령어가 증가한다.
-    if d == 0 or d == 1:    # 동, 서
-        if visited[r][c][2] == 0:   # 2(남)으로 회전이 가능한 경우
-            visited[r][c][2] = visited[r][c][d] + 1
-            q.append((r, c, 2))
-        if visited[r][c][3] == 0:   # 3(북)으로 회전이 가능한 경우
-            visited[r][c][3] = visited[r][c][d] + 1
-            q.append((r, c, 3))
 
-    elif d == 2 or d == 3:  # 남, 북
-        if visited[r][c][0] == 0:   # 0(동)으로 회전이 가능한 경우
-            visited[r][c][0] = visited[r][c][d] + 1
-            q.append((r, c, 0))
-        if visited[r][c][1] == 0:   # 1(서)으로 회전이 가능한 경우
-            visited[r][c][1] = visited[r][c][d] + 1
-            q.append((r, c, 1))
+    # ==== 방법 1. if 문으로 구현하기 ====
+    # if d == 0 or d == 1:    # 동, 서
+    #     if visited[r][c][2] == 0:   # 2(남)으로 회전이 가능한 경우
+    #         visited[r][c][2] = visited[r][c][d] + 1
+    #         q.append((r, c, 2))
+    #     if visited[r][c][3] == 0:   # 3(북)으로 회전이 가능한 경우
+    #         visited[r][c][3] = visited[r][c][d] + 1
+    #         q.append((r, c, 3))
+
+    # elif d == 2 or d == 3:  # 남, 북
+    #     if visited[r][c][0] == 0:   # 0(동)으로 회전이 가능한 경우
+    #         visited[r][c][0] = visited[r][c][d] + 1
+    #         q.append((r, c, 0))
+    #     if visited[r][c][1] == 0:   # 1(서)으로 회전이 가능한 경우
+    #         visited[r][c][1] = visited[r][c][d] + 1
+    #         q.append((r, c, 1))
             
+    # ==== 방법 2. for 문으로 구현하기 ====
+    # 동서남북 순서로 회전할 방향을 정의
+    turn_left = [3, 2, 1, 0]  # 왼쪽으로 90도 회전
+    turn_right = [2, 3, 0, 1]  # 오른쪽으로 90도 회전
+
+    # 왼쪽 회전
+    new_d = turn_left[d]
+    if not visited[r][c][new_d]:
+        visited[r][c][new_d] = visited[r][c][d] + 1
+        q.append((r, c, new_d))
+
+    # 오른쪽 회전
+    new_d = turn_right[d]
+    if not visited[r][c][new_d]:
+        visited[r][c][new_d] = visited[r][c][d] + 1
+        q.append((r, c, new_d))
+ 
+
 # for i in visited:
 #     print(*i)
