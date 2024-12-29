@@ -40,11 +40,11 @@ for _ in range(e):
     tmp = list(map(int, input().split()))
     li.append(tmp)
 
-li.sort(key = lambda x : x[2])
+li.sort(key = lambda x : x[2])  # 거리가 짧은 곳부터 탐색
 cost = 0
 
 for s, e, w in li:
-    if find(parents, s)!= find(parents, e):
+    if find(parents, s)!= find(parents, e): # 서로소인 노드일 경우, 묶기
         union(s, e)
         cost+=w
     #print(parents)
