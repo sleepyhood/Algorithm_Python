@@ -102,5 +102,5 @@ int main()
 	// 껍질 구하기
 	ll result = Monotone_Chain();
 
-	cout << u.size() + d.size() - 2;
+	cout << result;
 }
