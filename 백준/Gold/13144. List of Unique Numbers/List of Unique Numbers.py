@@ -23,10 +23,9 @@ while l < n and r < n:
         # 이 때, 중복 없을 때까지 왼쪽 포인터 늘려야 함
 
     elif cnt[lst[r]] != 0:
-        while l < r and cnt[lst[r]] != 0 :
-            cnt[lst[l]]-=1
-            l+=1
-            tmp = tmp - 1 if tmp > 1 else  1
+        cnt[lst[l]]-=1
+        l+=1
+        tmp = tmp - 1 if tmp > 1 else  1
         
        
     '''        
