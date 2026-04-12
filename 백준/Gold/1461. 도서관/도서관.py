@@ -25,8 +25,8 @@ for i in range(0, len(minus), m):
     total+=abs(minus[i])*2
 
 
-
+# 절대값 거리 중 최대 거리는 편도로만 가기
 dist = [abs(i) for i in li]
 
-total-= max(dist)
+total-= max(dist)   # 마지막 위치는 편도로만 간다.
 print(total)
